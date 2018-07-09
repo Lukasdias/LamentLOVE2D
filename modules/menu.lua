@@ -21,7 +21,7 @@ function menu_load()
 
     start_button = buttonLib:new("Start", 280, 40, 245, 400, {128,0,0}, function() play = true  end)
     quit_button = buttonLib:new("Give Up", 280, 40, 245, 500, {128,0,0}, function() love.event.quit()  end)
-    help_button = buttonLib:new("Wiki and Tutorial", 280, 40, 245, 450, {128,0,0}, function() tutorial = true  end)
+    --help_button = buttonLib:new("Wiki and Tutorial", 280, 40, 245, 450, {128,0,0}, function() tutorial = true  end)
 end
 
 function menu_update(dt)
@@ -44,6 +44,5 @@ function menu_draw()
     love.graphics.draw(credits_image, 0, 550)
     start_button.draw()
     quit_button:draw()
-    help_button:draw()
     love.graphics.setColor(255, 255, 255)
 end

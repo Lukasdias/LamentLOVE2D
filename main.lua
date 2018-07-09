@@ -1,7 +1,6 @@
 require("modules/laurence")
 require("modules/map_conf")
 require("modules/menu")
-require("modules/tutorial")
 require("modules/Ost")
 require("modules/npc")
 require("modules/points")
@@ -27,7 +26,6 @@ end--]]
 
 function love.load()	
 	Map_load()
-	tutorial_load()
 	menu_load()
 	songs_load()
 	npc_load(map)
@@ -46,8 +44,6 @@ function love.update(dt)
 		points_update(dt)
 		npc_update(dt)
 		points_update(dt)
-	elseif gamestate == "tutorial" then 
-		tutorial_update(dt)
 	elseif gamestate == "Game Over" then
 		gameover_update(dt)
 	elseif gamestate == "Ending" then
@@ -58,8 +54,6 @@ end
 function love.draw()
   if gamestate == "title" then
 		menu_draw()
-  elseif gamestate == "tutorial" then
-		tutorial_draw()
   elseif gamestate == "play" then
 		Map_draw()
   elseif gamestate == "Game Over" then
@@ -69,16 +63,17 @@ function love.draw()
   end
 end
 
+function love.keypressed(key)
+end
+
 
 function love.mousemoved(x,y)
     start_button.mousemoved(x,y)
     quit_button.mousemoved(x,y)
-    help_button.mousemoved(x,y)
 end
   
 function love.mousepressed(x,y,b,it)
     start_button.mousepressed(x,y,b)
     quit_button.mousepressed(x,y,b)
-    help_button.mousepressed(x,y,b)
 end
 
