@@ -112,8 +112,8 @@ function last_keyreleased(key)
 end
 
 function Laurence_draw()
-	love.graphics.setColor(255, 0.18, 0.05)
-	love.graphics.polygon("fill", laurence.body:getWorldPoints(laurence.shape:getPoints()))
+	--love.graphics.setColor(255, 0.18, 0.05)
+	--love.graphics.polygon("fill", laurence.body:getWorldPoints(laurence.shape:getPoints()))
 	--desenha a animação correspondente--
 	if animationAtual == laurenceAnim.Run  then
 		if direcao  then
