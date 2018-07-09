@@ -11,7 +11,7 @@ end
 function gameover_update(dt)
     gameOver.anim:update(dt)
     if gamestate == "Game Over" then
-        --songs_update()
+        songs_update()
     end
 end 
 
