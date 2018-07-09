@@ -14,15 +14,6 @@ function love.keyreleased(key)
 	last_keyreleased(key)
 end
 
---[[function love.keypressed(key)
-	if key == backspace then
-		if gamestate == "tutorial" then
-			gamestate = "title"
-			back = true
-		end
-	end
-end--]]
-
 
 function love.load()	
 	Map_load()
@@ -38,16 +29,20 @@ end
 function love.update(dt)
 	if gamestate == "title" then
 		menu_update(dt)
+		songs_update()
 	elseif gamestate == "play" then
 		Map_update(dt)
 		Laurence_update(dt)
 		points_update(dt)
 		npc_update(dt)
 		points_update(dt)
+		songs_update()
 	elseif gamestate == "Game Over" then
 		gameover_update(dt)
+		songs_update()
 	elseif gamestate == "Ending" then
 		Ending_update(dt)
+		songs_update()
 	end
 end
 
@@ -59,7 +54,7 @@ function love.draw()
   elseif gamestate == "Game Over" then
 		gameover_draw()
   elseif gamestate == "Ending" then
-	Ending_draw()
+		Ending_draw()
   end
 end
 
