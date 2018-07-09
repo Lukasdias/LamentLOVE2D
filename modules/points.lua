@@ -31,65 +31,45 @@ function points_update(dt)
     --primeiro spawn--
     if px >= 100 and px <= 135 and py >= 170 and py <= 180  then
         eye.posx, eye.posy = 230, 310
-        currentLife = currentLife + 3
-        if currentLife > 1000 then
-            currentLife = 1000
-        end
+        currentLife = 1000
         safe = true
     --segundo spawn--
     elseif px >= 230 and px <= 245  and py >= 310 and py <= 325 then
         eye.posx, eye.posy = 25, 505
         AureaB.posx, AureaB.posy = 185, 245
-        currentLife = currentLife + 3
+        currentLife = 1000
         safe = true
-        if currentLife > 1000 then
-            currentLife = 1000
-        end
     --terceiro spawn--
     elseif px >= 10 and px <= 40  and py >= 510 and py <= 520 then
         eye.posx, eye.posy = 285, 525
         AureaB.posx, AureaB.posy = -15, 440
-        currentLife = currentLife + 3
+        currentLife = 1000
         safe = true
-        if currentLife > 1000 then
-            currentLife = 1000
-        end
     --quarto spawn--
     elseif px >= 270 and px <= 300 and py >= 540 and py <= 550 then
         eye.posx, eye.posy = 485, 535
         AureaB.posx, AureaB.posy = 240, 469
-        currentLife = currentLife + 3
+        currentLife = 1000
         safe = true
-        if currentLife > 1000 then
-            currentLife = 1000
-        end
+       
     --quinto spawn-- 
     elseif px >= 470 and px <= 510 and py >= 540 and py <= 550 then
         eye.posx, eye.posy = 630, 190
         AureaB.posx, AureaB.posy = 450, 470
-        currentLife = currentLife + 3
+        currentLife = 1000
         safe = true
-        if currentLife > 1000 then
-            currentLife = 1000
-        end
     --sexto spawn--
     elseif px >= 595 and px <= 635 and py >= 185 and py <= 205 then
         eye.posx, eye.posy = 500, 158
         AureaB.posx, AureaB.posy = 585, 115
-        currentLife = currentLife + 3
+        currentLife = 1000
         safe = true
-        if currentLife > 1000 then
-            currentLife = 1000
-        end
         --sétimo spawn--
     elseif px >= 500 and px <= 520 and py >= 155 and py <= 165 then
         eye.posx, eye.posy = 800, 800 -- vai para fora do mapa
         currentLife = 1000
         AureaB.posx, AureaB.posy = 460, 85
         safe = true
-        if currentLife > 1000 then
-            currentLife = 1000
-        end
     else
         currentLife = currentLife - 1
         safe = false
@@ -102,8 +82,8 @@ function points_update(dt)
         nerf = true
        
     else 
-        forceR = 750
-        forceL = - 750
+        forceR = 130
+        forceL = - 130
         nerf = false
     end
 end
