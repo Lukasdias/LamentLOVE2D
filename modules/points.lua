@@ -82,8 +82,8 @@ function points_update(dt)
         nerf = true
        
     else 
-        forceR = 130
-        forceL = - 130
+        forceR = 215
+        forceL = - 215
         nerf = false
     end
 end
