@@ -31,6 +31,7 @@ function menu_update(dt)
             gamestate = "play"
         end
     end
+end
 
 function menu_draw()
     love.graphics.draw(menu_image, 0, 0, 0, 1.5, 1)
