@@ -16,6 +16,7 @@ end
 
 
 function love.load()	
+	paused = false
 	Map_load()
 	menu_load()
 	songs_load()
@@ -59,6 +60,15 @@ function love.draw()
 end
 
 function love.keypressed(key)
+	if gamestate == "Game Over" and key == "return" then 
+		love.audio.stop(death_theme)
+		gamestate = "play"
+		love.load()
+	elseif gamestate == "Ending" and key == "return" then
+		love.audio.stop(win_theme)
+		gamestate = "play"
+		love.load()
+	end
 end
 
 
