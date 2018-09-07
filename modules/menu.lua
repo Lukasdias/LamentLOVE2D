@@ -9,7 +9,9 @@ function menu_load()
     --flag que define o estado de jogo inicial como o menu do jogo--
     gamestate = "title"
     --Background--
-    menu_image = love.graphics.newImage("imagens/menu/Menu_Image.jpg")
+    menu_image = love.graphics.newImage("imagens/menu/Menu_Background.png")
+    menu_grid = anim8.newGrid(768, 384, menu_image:getWidth(), menu_image:getHeight())
+    menu_anim =  anim8.newAnimation(menu_grid("1-9", 1, "1-9", 2, "1-9", 3), 0.08)
     --utilizando a anim8 para animar o menu--
      Title = love.graphics.newImage("imagens/menu/Main_Title.png")
     --cortando frame por frame usando anim8--
@@ -19,12 +21,13 @@ function menu_load()
     --creditos-- 
     credits_image = love.graphics.newImage("imagens/menu/credits.png")
 
-    start_button = buttonLib:new("Start", 280, 40, 245, 400, {128,0,0}, function() play = true  end)
-    quit_button = buttonLib:new("Give Up", 280, 40, 245, 500, {128,0,0}, function() love.event.quit()  end)
+    start_button = buttonLib:new("Start", 180, 40, 485, 375, {128,0,0}, function() play = true  end)
+    quit_button = buttonLib:new("Give Up", 180, 40, 485, 450, {128,0,0}, function() love.event.quit()  end)
     --help_button = buttonLib:new("Wiki and Tutorial", 280, 40, 245, 450, {128,0,0}, function() tutorial = true  end)
 end
 
 function menu_update(dt)
+    menu_anim:update(dt)
     TitleAnimation:update(dt)
     if play then
         if gamestate == "title" then
@@ -34,7 +37,7 @@ function menu_update(dt)
 end
 
 function menu_draw()
-    love.graphics.draw(menu_image, 0, 0, 0, 1.5, 1)
+    menu_anim:draw(menu_image, 0, 0, 0 , 1.1, 1.55, 12, 0)
     TitleAnimation:draw(Title, 5, 5)
     love.graphics.draw(credits_image, 0, 550)
     start_button.draw()

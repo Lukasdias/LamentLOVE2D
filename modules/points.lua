@@ -31,43 +31,43 @@ function points_update(dt)
     --primeiro spawn--
     if px >= 100 and px <= 135 and py >= 170 and py <= 180  then
         eye.posx, eye.posy = 230, 310
-        currentLife = 1000
+        currentLife = 1500
         safe = true
     --segundo spawn--
     elseif px >= 230 and px <= 245  and py >= 310 and py <= 325 then
         eye.posx, eye.posy = 25, 505
         AureaB.posx, AureaB.posy = 185, 245
-        currentLife = 1000
+        currentLife = 1500
         safe = true
     --terceiro spawn--
     elseif px >= 10 and px <= 40  and py >= 510 and py <= 520 then
         eye.posx, eye.posy = 285, 525
         AureaB.posx, AureaB.posy = -15, 440
-        currentLife = 1000
+        currentLife = 1500
         safe = true
     --quarto spawn--
     elseif px >= 270 and px <= 300 and py >= 540 and py <= 550 then
         eye.posx, eye.posy = 485, 535
         AureaB.posx, AureaB.posy = 240, 469
-        currentLife = 1000
+        currentLife = 1500
         safe = true
        
     --quinto spawn-- 
     elseif px >= 470 and px <= 510 and py >= 540 and py <= 550 then
         eye.posx, eye.posy = 630, 190
         AureaB.posx, AureaB.posy = 450, 470
-        currentLife = 1000
+        currentLife = 1500
         safe = true
     --sexto spawn--
     elseif px >= 595 and px <= 635 and py >= 185 and py <= 205 then
         eye.posx, eye.posy = 500, 158
         AureaB.posx, AureaB.posy = 585, 115
-        currentLife = 1000
+        currentLife = 1500
         safe = true
         --sétimo spawn--
     elseif px >= 500 and px <= 520 and py >= 155 and py <= 165 then
         eye.posx, eye.posy = 800, 800 -- vai para fora do mapa
-        currentLife = 1000
+        currentLife = 1500
         AureaB.posx, AureaB.posy = 460, 85
         safe = true
     else
@@ -77,24 +77,25 @@ function points_update(dt)
 
     --nerf de velociade no terceiro andar do mapa--
     if px >= 75 and px <= 500 and py >= 520 and py <= 550 then
-        forceR = 105
-        forceL = - 105
+        forceR = 155
+        forceL = - 155
         nerf = true
        
     else 
-        forceR = 215
-        forceL = - 215
+        forceR = 205
+        forceL = - 205
         nerf = false
     end
 end
 
 function points_draw()
     eye.anim:draw(eye.img, eye.posx , eye.posy, 0, 1, 1, 12, 0)
-    love.graphics.print("Sua quantidade de discernimento é : " .. currentLife)
+   -- love.graphics.setColor(10, 10, 100)
+    love.graphics.print("Your health time is: " .. currentLife, 0, 10, 0, 1.5, 1.5)
     if nerf then
-        love.graphics.print("As trevas te seguram...", 0, 400)
+        love.graphics.print("Darkness hold you fool haha...", 0, 420)
     else
-        love.graphics.print("Corra!", 0, 400)
+        love.graphics.print("Run!", 0, 400)
     end
     
     if safe then

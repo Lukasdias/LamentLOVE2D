@@ -13,7 +13,7 @@ local direcao
 	--força para a direita--
 	forceR = 215
 	--força para cima
-	forceJ = -600
+	forceJ = -1000
 	--Criando o corpo do laurence e declarando suas propriedades--
 	laurence = {}
 	laurence.VLY = 0
@@ -63,12 +63,12 @@ function Laurence_update(dt)
 	if love.keyboard.isDown("right")  then 
 		animationAtual = laurenceAnim.Run
 		imagemAtual = laurenceImg.Run
-		laurence.body:applyForce( forceR, 600)
+		laurence.body:applyForce( forceR, 9.81*32)
 		direcao = true
 	elseif love.keyboard.isDown("left") then
 		animationAtual = laurenceAnim.Run
 		imagemAtual = laurenceImg.Run
-		laurence.body:applyForce( forceL, 600 )
+		laurence.body:applyForce( forceL, 9.81*32 )
 		direcao = false
 	--configuração do pulo--
 	elseif love.keyboard.isDown("up") then
@@ -76,7 +76,7 @@ function Laurence_update(dt)
 		imagemAtual = laurenceImg.Jump
 		laurence.body:applyForce(0, forceJ ) --aplica força para cima--
 		laurence.VLY = laurence.VLY + 7.5 -- incrementa em um cont--
-			if laurence.VLY >= 200 then -- quando chegar proximo a 150 aplica-se um força na direção contraria
+			if laurence.VLY >= 200 then -- quando chegar proximo a 200 aplica-se um força na direção contraria
 				laurence.body:applyForce(0, 900 )--força ja citada sendo aplicada
 				laurenceAnim.Jump:pauseAtEnd()--pausar a animação de pulo em seu ultimo frame
 			end
