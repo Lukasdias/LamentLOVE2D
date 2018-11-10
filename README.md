@@ -14,17 +14,17 @@
      
   *link para dowload do aplicativo: https://www.mapeditor.org/*
                 
-      - ANIM8(lib de animações para love2d)
+       ANIM8(lib de animações para love2d)
       
          *link para a lib*
          https://github.com/kikito
          
-      - A STI(simple tiled implementation) lib para implentar o meu mapa in-game "ativando" sua fisica através da propriedade          "          "collidable" ao criar cada objeto usando o tiled.
+       A STI(simple tiled implementation) lib para implentar o meu mapa in-game.
       
          *link para a lib*
          https://github.com/karai17/Simple-Tiled-Implementation
          
-      - Button_Love lib para botões(feita pelo meu colega de classe Vinicius Costa), ela foi utilizada no meu menu.
+       Button_Love lib para botões(feita pelo meu colega de classe Vinicius Costa), ela foi utilizada no meu menu.
 
         *link para a lib*
          https://github.com/costvin15/buttonLove2d
