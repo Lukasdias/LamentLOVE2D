@@ -37,7 +37,7 @@
          </p>
       - Tochas e Velas são do jogo Castlevania Rondo of Blood
          
-         *Um exemplo é esta vela ao lado de Ritchter Belmont(eu uso ele frequentemente em meu mapa).*
+         *Um exemplo é esta vela ao lado de Ritchter Belmont(eu uso ela frequentemente em meu mapa).*
           
           <p align="center">
               <img src="https://media.giphy.com/media/eAQ3AZUktO4I8/giphy.gif"/>
