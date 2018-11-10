@@ -6,13 +6,11 @@
 </p>
 
   - No desenvolvimento deste game utilizei:
-      - O TILED(criador de mapas)
-    
-        *Com ele, produzi este mapa abaixo*:
-        
+      - O TILED MAP(criador de mapas)
            <p align="center">
                   <img src="https://github.com/Lukasdias/LamentLOVE2D/blob/master/map/Map_1.png"/>
                 </p>
+            * link para dowload do aplicativo: https://www.mapeditor.org/
                 
       - ANIM8(lib de animações para love2d)
       
