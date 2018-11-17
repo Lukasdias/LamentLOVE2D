@@ -6,6 +6,7 @@
 </p>
 
   - Jogo feito na versão 0.10.2 do LOVE2D
+    - link para dowload: https://bitbucket.org/rude/love/downloads/
   
   - No desenvolvimento deste game utilizei:
       - O TILED MAP(criador de mapas)
