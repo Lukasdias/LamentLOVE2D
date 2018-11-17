@@ -5,6 +5,8 @@
   <img src="https://ubisafe.org/images/castle-vector-castlevania-6.png"/>
 </p>
 
+  - Jogo feito na versão 0.10.2 do LOVE2D
+  
   - No desenvolvimento deste game utilizei:
       - O TILED MAP(criador de mapas)
            
