@@ -20,9 +20,9 @@ local direcao
 	laurence.velocity = 0
 	laurence.VLY = 0
 	laurence.body = love.physics.newBody(world, 60, 120, "dynamic")
-	laurence.shape = love.physics.newRectangleShape(27.5, 25.5)
-	laurence.body:setMass(7000); 
-	laurence.fixture = love.physics.newFixture(laurence.body, laurence.shape)
+	laurence.shape = love.physics.newRectangleShape(27.5, 25.5) 
+	laurence.fixture = love.physics.newFixture(laurence.body, laurence.shape, 0.8)
+	laurence.altura = 0
 	-- Sprites Organizados--
 	laurenceImg = {}
 	laurenceImg.Stop = love.graphics.newImage("imagens/Cruz/Cruz_Stop.png")
@@ -45,6 +45,8 @@ function Laurence_update(dt)
 	--print(laurence.VLY)
 	px = math.floor(laurence.body:getX())
 	py = math.floor(laurence.body:getY())
+	gravidade = laurence.body:getGravityScale()
+	
 	--------------------------------------------------
     --------------------------------------------------
 	--condição para dar Game Over--
@@ -69,22 +71,23 @@ function Laurence_update(dt)
 	if love.keyboard.isDown("right")  then 
 		animationAtual = laurenceAnim.Run
 		imagemAtual = laurenceImg.Run
-		laurence.body:applyForce( forceR, 0)
+		laurence.body:applyForce( forceR, 50)
 		direcao = true
 	elseif love.keyboard.isDown("left") then
 		animationAtual = laurenceAnim.Run
 		imagemAtual = laurenceImg.Run
-		laurence.body:applyForce( forceL, 0 )
+		laurence.body:applyForce( forceL, 50)
 		direcao = false
-	--configuração do pulo--
+	--configuração do pulo(muito bugado)--
 	elseif love.keyboard.isDown("up") then
 		animationAtual = laurenceAnim.Jump
 		imagemAtual = laurenceImg.Jump
+		laurenceAnim.Jump:pause();
+		print(laurence.altura)
 		laurence.body:applyForce(0, -450 ) --aplica força para cima--
-		laurence.VLY = laurence.VLY + 10 -- incrementa em um cont--
-			if laurence.VLY >= 150 then -- quando chegar proximo a 200 aplica-se um força na direção contraria
-				laurence.body:applyForce(0, 900)--força ja citada sendo aplicada
-				laurenceAnim.Jump:pauseAtEnd()--pausar a animação de pulo em seu ultimo frame
+		laurence.altura = laurence.altura + 10 -- incrementa em um cont--
+			if (laurence.altura > 150) then -- quando chegar proximo a 200 aplica-se um força na direção contraria
+				laurence.body:applyForce(0, 1800);
 			end
 	elseif left == true then
 		animationAtual = laurenceAnim.Stop
@@ -93,6 +96,7 @@ function Laurence_update(dt)
 		animationAtual = laurenceAnim.Stop
 		imagemAtual = laurenceImg.Stop
 	else
+		laurence.body:applyForce(0, 100)
 		animationAtual = laurenceAnim.Stop
 		imagemAtual = laurenceImg.Stop
 	end
@@ -107,7 +111,7 @@ function last_keyreleased(key)
 		left = false
 		right = true
 	elseif key == "up" then
-		laurence.VLY = 0
+		laurence.altura = 0
 		animationAtual = laurenceAnim.Jump
 		imagemAtual = laurenceImg.Jump
 	end

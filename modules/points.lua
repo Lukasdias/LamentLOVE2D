@@ -4,8 +4,6 @@ function  points_load(map, world)
 -- TABELA ESCUDO E OLHO E A BARRA DE VIDA--
     currentLife = 1500
     
-
-
     Health = {}
     Health.posx = 10
     Health.posy = 0
@@ -100,12 +98,6 @@ end
 function points_draw()
     eye.anim:draw(eye.img, eye.posx , eye.posy, 0, 1, 1, 12, 0)
     --love.graphics.print("Your health time is: " .. currentLife, 0, 10, 0, 1.5, 1.5)
-    if nerf then
-        love.graphics.print("Darkness hold you fool haha...", 0, 420)
-    else
-        love.graphics.print("Run!", 0, 400)
-    end
-    
     if safe then
         Shield.anim:draw(Shield.img, Shield.posx, Shield.posy, 0, 0.5, 0.6, 12, 0)
     end

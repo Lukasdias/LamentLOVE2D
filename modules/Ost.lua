@@ -1,8 +1,8 @@
 function songs_load()
-    main_theme = love.audio.newSource("OST/Main_Theme.mp3")
-    menu_theme = love.audio.newSource("OST/Menu_Theme.mp3")
-    death_theme = love.audio.newSource("OST/Death_Theme.mp3")
-    win_theme = love.audio.newSource("OST/Win_theme.mp3")
+    main_theme = love.audio.newSource("OST/Main_Theme.mp3", "static")
+    menu_theme = love.audio.newSource("OST/Menu_Theme.mp3", "static")
+    death_theme = love.audio.newSource("OST/Death_Theme.mp3", "static")
+    win_theme = love.audio.newSource("OST/Win_theme.mp3", "static")
 end
 
 function songs_update(dt)

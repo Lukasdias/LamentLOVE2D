@@ -73,12 +73,16 @@ end
 
 
 function love.mousemoved(x,y)
-    start_button.mousemoved(x,y)
-    quit_button.mousemoved(x,y)
+	if gamestate == "title" then
+		start_button.mousemoved(x,y)
+		quit_button.mousemoved(x,y)
+	end
 end
   
 function love.mousepressed(x,y,b,it)
-    start_button.mousepressed(x,y,b)
-    quit_button.mousepressed(x,y,b)
+	if gamestate == "title" then
+		start_button.mousepressed(x,y,b)
+		quit_button.mousepressed(x,y,b)
+	end
 end
 
