@@ -5,8 +5,8 @@
   <img src="https://ubisafe.org/images/castle-vector-castlevania-6.png"/>
 </p>
 
-  - Jogo feito na versão 0.10.2 do LOVE2D
-    - link para dowload: https://bitbucket.org/rude/love/downloads/
+  - Jogo feito na versão 0.11.2 do LOVE2D
+    - link para dowload: https://love2d.org/
   
   - No desenvolvimento deste game utilizei:
       - O TILED MAP(criador de mapas)
@@ -30,28 +30,7 @@
        - Button_Love lib para botões(feita pelo meu colega de classe Vinicius Costa), ela foi utilizada no meu menu.
           
           *link para a lib*
-           https://github.com/costvin15/buttonLove2d
-            
-  - Sprites sheets utilizados: 
-      - Soma Cruz(personagem principal do jogo Castlevania Aria of Sorrow)
-        
-        <p align="center">
-              <img src="http://rs953.pbsrc.com/albums/ae12/nonemployee/somacruz.gif~c200"/>
-         </p>
-      - Tochas e Velas são do jogo Castlevania Rondo of Blood
-         
-         *Um exemplo é esta vela ao lado de Ritchter Belmont(eu uso ela frequentemente em meu mapa).*
-          
-          <p align="center">
-              <img src="https://media.giphy.com/media/eAQ3AZUktO4I8/giphy.gif"/>
-            </p>
-      - A lanterna com os mensageiros(Bloodborne)
-         
-         *No jogo foi necessário tirar a cor preta no fundo do gif e transformá-lo em um sprite, para poder implementa-lo.*
-          
-          <p align="center">
-              <img src="https://orig00.deviantart.net/d191/f/2015/331/9/1/bloodborne___lamp_by_zedotagger-d9i93ao.gif"/>
-            </p>
+           https://github.com/costvin15/buttonLove2d            
 # Conclusões
   
   - Em um breve resumo esses foram os elementos que me ajudaram a fazer este jogo
