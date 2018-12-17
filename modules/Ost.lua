@@ -15,9 +15,11 @@ function songs_update(dt)
         main_theme:play()
     elseif gamestate == "Game Over" then
         main_theme:stop()
+        death_theme:isLooping(false)
         death_theme:play()
     elseif gamestate == "Ending" then 
         main_theme:stop()
+        win_theme:isLooping(false)
         win_theme:play()
     end
 end

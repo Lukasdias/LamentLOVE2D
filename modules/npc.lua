@@ -37,17 +37,30 @@ function npc_load(map)
    npc.mummy.img = love.graphics.newImage('imagens/Npcs/mummy.png')
    npc.mummy.grid= anim8.newGrid(37, 45 ,npc.mummy.img:getWidth(),  npc.mummy.img:getHeight())
    npc.mummy.anim = anim8.newAnimation(npc.mummy.grid("1-5", 1, "1-5", 2, "1-5", 3, "1-3", 4), 0.08)
-    --poisição mumia---
+    --posição mumia---
    npc.mummy.posx  = 120
    npc.mummy.posy = 516
    npc.mummy.vL = 1
+   npc.mummy.body = love.physics.newBody(world, 120, 516, "kinematic")
+   npc.mummy.shape = love.physics.newRectangleShape(28, 57) 
+   npc.mummy.fixture = love.physics.newFixture(npc.mummy.body, npc.mummy.shape, 1)
+   npc.mummy.body:setFixedRotation(true)
 end
 
 function npc_update(dt)
+    damage = npc.mummy.body:isTouching(laurence.body)
     npc.ghost.anim:update(dt)
     npc.ghost2.anim:update(dt)
     npc.medusa.anim:update(dt)
     npc.mummy.anim:update(dt)
+    npc.mummy.body:setX(npc.mummy.posx + 5)
+    npc.mummy.body:setY(npc.mummy.posy + 20)
+    -- se o jogador estiver perto da múmia então tomara um impulso para a esquerda e recebera dano --
+	if damage then
+		laurence.body:applyForce(-1000, 0)
+        currentLife = currentLife - 100
+        camera:shake(3, 1, 60)
+	end
     --movimentção do fantasma 1 e 2 no primeiro setor do mapa--
     if npc.ghost.posx >= 300 and npc.ghost2.posx >= 600 then
         npc.ghost.direcao = false
@@ -98,7 +111,8 @@ function npc_update(dt)
 end
 
 function npc_draw()
-       -- desenhar os fantasmas no angulo e direção correta--
+    love.graphics.polygon("line", npc.mummy.body:getWorldPoints(npc.mummy.shape:getPoints()))
+        -- desenhar os fantasmas no angulo e direção correta--
         if sent  then
             npc.ghost.anim:draw(npc.ghost.img, npc.ghost.posx, npc.ghost.posy, 0 , -1, 1, 12 , 0)
             npc.ghost2.anim:draw(npc.ghost2.img, npc.ghost2.posx, npc.ghost2.posy, 0 , -1, 1, 12 , 0)

@@ -4,7 +4,6 @@ function Ending_load()
     End_bg_grid = anim8.newGrid(960, 540, End_bg:getWidth(), End_bg:getHeight())
     End_bg_anim = anim8.newAnimation(End_bg_grid('1-5', 1, '1-5', 2, '1-5', 3, '1-5', 4, '1-5', 5, '1-5', 6, '1-5', 7, '1-5', 8, '1-5', 9, '1-5', 10, '1-5', 11, '1-5', 12), 0.09) 
     BackG = {}
-    BackG.img = love.graphics.newImage("imagens/Menu/Final_Stage.png")
     BackG.title1 = love.graphics.newImage("imagens/Menu/Press_Enter.png")
     BackG.title2 = love.graphics.newImage("imagens/Menu/Congratulations2.png")
     BackG.title3 = love.graphics.newImage("imagens/Menu/Congratulations.png")

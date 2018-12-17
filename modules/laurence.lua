@@ -1,59 +1,65 @@
 --requires--
+Camera = require ('libs/Camera')
 local anim8 = require ('libs/anim8')
-
 local animationAtual
-
 local imagemAtual
-
 local direcao 
 
   function Laurence_load(map, world)
+	--------------------Configurações da Câmera--------------------------
+	camera = Camera()
+	camera.scale = 2
+	camera:setFollowStyle('SCREEN_BY_SCREEN')
 	--força para a esquerda--
-	forceL = -100
+	forceL = -10
 	--força para a direita--
-	forceR = 100
-	--força para cima
-	forceJ = -900
+	forceR = 10
 	--Criando o corpo do laurence e declarando suas propriedades--
 	laurence = {}
-	laurence.speed = 100 
-	laurence.velocity = 0
-	laurence.VLY = 0
-	laurence.body = love.physics.newBody(world, 60, 120, "dynamic")
-	laurence.shape = love.physics.newRectangleShape(27.5, 25.5) 
-	laurence.fixture = love.physics.newFixture(laurence.body, laurence.shape, 0.8)
-	laurence.altura = 0
 	-- Sprites Organizados--
 	laurenceImg = {}
-	laurenceImg.Stop = love.graphics.newImage("imagens/Cruz/Cruz_Stop.png")
-	laurenceImg.Run = love.graphics.newImage("imagens/Cruz/Cruz_Run.png")
-	laurenceImg.Jump = love.graphics.newImage("imagens/Cruz/Cruz_Jump.png")
+	laurenceImg.Stop = love.graphics.newImage("imagens/Player/Alucard_Stop.png")
+	laurenceImg.Run = love.graphics.newImage("imagens/Player/Alucard_Run.png")
+	laurenceImg.Jump = love.graphics.newImage("imagens/Player/Alucard_Jump.png")
+	laurenceImg.Duck = love.graphics.newImage("imagens/Player/Alucard_Duck.png")
+	laurenceImg.Fall = love.graphics.newImage("imagens/Player/Alucard_Falling.png")
 	--Grids--
 	laurenceGrids = {}
-	laurenceGrids.gridStop = anim8.newGrid(21, 37,laurenceImg.Stop:getWidth(), laurenceImg.Stop:getHeight())
-	laurenceGrids.gridRun= anim8.newGrid(34, 40,laurenceImg.Run:getWidth(), laurenceImg.Run:getHeight())
-	laurenceGrids.gridJump = anim8.newGrid(33, 38,laurenceImg.Jump:getWidth(), laurenceImg.Jump:getHeight())
+	laurenceGrids.gridStop = anim8.newGrid(30, 54,laurenceImg.Stop:getWidth(), laurenceImg.Stop:getHeight())
+	laurenceGrids.gridRun= anim8.newGrid(46, 55,laurenceImg.Run:getWidth(), laurenceImg.Run:getHeight())
+	laurenceGrids.gridJump = anim8.newGrid(49, 53,laurenceImg.Jump:getWidth(), laurenceImg.Jump:getHeight())
+	laurenceGrids.gridDuck = anim8.newGrid(50, 52,laurenceImg.Duck:getWidth(), laurenceImg.Duck:getHeight())
+	laurenceGrids.gridFall = anim8.newGrid(51, 67,laurenceImg.Fall:getWidth(), laurenceImg.Fall:getHeight())
 	--Animações--
 	laurenceAnim = {}
-	laurenceAnim.Stop = anim8.newAnimation(laurenceGrids.gridStop('1-4',1), 0.08)
-	laurenceAnim.Run = anim8.newAnimation(laurenceGrids.gridRun('1-17',1), 0.08)
-	laurenceAnim.Jump = anim8.newAnimation(laurenceGrids.gridJump('1-7',1), 0.08)
+	laurenceAnim.Stop = anim8.newAnimation(laurenceGrids.gridStop('1-6',1), 0.05)
+	laurenceAnim.Run = anim8.newAnimation(laurenceGrids.gridRun('1-17',1), 0.05)
+	laurenceAnim.Jump = anim8.newAnimation(laurenceGrids.gridJump('1-4',1), 0.05)
+	laurenceAnim.Duck = anim8.newAnimation(laurenceGrids.gridDuck('1-15',1), 0.05)
+	laurenceAnim.Fall = anim8.newAnimation(laurenceGrids.gridFall('1-2',1), 0.05)
+	--Física--
+	laurence.body = love.physics.newBody(world,20, 120, "dynamic")
+	laurence.shape = love.physics.newRectangleShape(26, 35) 
+	laurence.fixture = love.physics.newFixture(laurence.body, laurence.shape)
+	laurence.body:setMassData(laurence.shape:computeMass(1))
+	--Detectar colissões--
+	laurence.fixture:setUserData("player")
+	laurence.body:setFixedRotation(true)
+	--contacts = world:getContactCount()
+	laurence.body:setInertia(0)
 end
 
 function Laurence_update(dt)
-	--posição do corpo--
-	--print(laurence.VLY)
+	camera:update(dt)
+	contacts = world:getContactCount()
 	px = math.floor(laurence.body:getX())
 	py = math.floor(laurence.body:getY())
-	gravidade = laurence.body:getGravityScale()
-	
-	--------------------------------------------------
-    --------------------------------------------------
+	camera:follow(px, py)
 	--condição para dar Game Over--
 	if currentLife <= 0 then
 		gamestate = "Game Over"
 	end
-
+	--condição para encerrar o jogo--
 	if px >=400 and px <= 460 and py >=110 and py <=175 then
 		gamestate = "Ending"
 	end
@@ -62,33 +68,22 @@ function Laurence_update(dt)
 	laurenceAnim.Stop:update(dt)
 	laurenceAnim.Run:update(dt)
 	laurenceAnim.Jump:update(dt)
-	-- se o jogador estiver perto da múmia então tomara um impulso para a esquerda e recebera dano --
-	if (px >= npc.mummy.posx - 25) and (px <= npc.mummy.posx + 25) and (py <= 550) and (py >= 505) then
-		laurence.body:applyForce(-10000, 0)
-		currentLife = currentLife - 140
-	end
+	laurenceAnim.Duck:update(dt)
+	laurenceAnim.Fall:update(dt)
 	--movimentação do personagem--
-	if love.keyboard.isDown("right")  then 
+	if love.keyboard.isDown("right")  then
 		animationAtual = laurenceAnim.Run
 		imagemAtual = laurenceImg.Run
-		laurence.body:applyForce( forceR, 50)
+		laurence.body:applyForce(200, 0)
 		direcao = true
 	elseif love.keyboard.isDown("left") then
 		animationAtual = laurenceAnim.Run
 		imagemAtual = laurenceImg.Run
-		laurence.body:applyForce( forceL, 50)
+		laurence.body:applyForce(-200, 0)
 		direcao = false
-	--configuração do pulo(muito bugado)--
-	elseif love.keyboard.isDown("up") then
-		animationAtual = laurenceAnim.Jump
-		imagemAtual = laurenceImg.Jump
-		laurenceAnim.Jump:pause();
-		print(laurence.altura)
-		laurence.body:applyForce(0, -450 ) --aplica força para cima--
-		laurence.altura = laurence.altura + 10 -- incrementa em um cont--
-			if (laurence.altura > 150) then -- quando chegar proximo a 200 aplica-se um força na direção contraria
-				laurence.body:applyForce(0, 1800);
-			end
+	elseif love.keyboard.isDown("down") then
+		animationAtual = laurenceAnim.Duck
+		imagemAtual = laurenceImg.Duck
 	elseif left == true then
 		animationAtual = laurenceAnim.Stop
 		imagemAtual = laurenceImg.Stop
@@ -96,7 +91,6 @@ function Laurence_update(dt)
 		animationAtual = laurenceAnim.Stop
 		imagemAtual = laurenceImg.Stop
 	else
-		laurence.body:applyForce(0, 100)
 		animationAtual = laurenceAnim.Stop
 		imagemAtual = laurenceImg.Stop
 	end
@@ -110,47 +104,45 @@ function last_keyreleased(key)
 	elseif key == "right" then
 		left = false
 		right = true
-	elseif key == "up" then
-		laurence.altura = 0
-		animationAtual = laurenceAnim.Jump
-		imagemAtual = laurenceImg.Jump
-	end
-	--inercia 0--
-	if key == "left" or "right" or "up" then
-		laurence.body:setLinearVelocity(0, 1)
 	end
 end
 
+function jump_config(key)
+	if key == "space" and contacts ~= 0  then
+		laurence.body:applyLinearImpulse(0, -200)
+		animationAtual = laurenceAnim.Jump
+		imagemAtual = laurenceImg.Jump
+		jump = true
+	end
+	
+end
+
+
 function Laurence_draw()
-	--love.graphics.setColor(255, 0.18, 0.05)
-	--love.graphics.polygon("fill", laurence.body:getWorldPoints(laurence.shape:getPoints()))
+	--love.graphics.polygon("line", laurence.body:getWorldPoints(laurence.shape:getPoints()))-- Hitbox
 -------------------------------------------------------------------------------------------------------------------
 	--desenha a animação correspondente--
 	if animationAtual == laurenceAnim.Run  then
 		if direcao  then
-			laurenceAnim.Run:draw(laurenceImg.Run, laurence.body:getX(), laurence.body:getY()-19, 0 , 1 , 1 , 12 , 0)
-		elseif not direcao then
-			laurenceAnim.Run:draw(laurenceImg.Run, laurence.body:getX() , laurence.body:getY()-19, 0 , -1 , 1 , 12, 0)
+			laurenceAnim.Run:draw(laurenceImg.Run, laurence.body:getX() - 10, laurence.body:getY() - 19, 0 , 1 , 0.7, 10, 0)
+		elseif not direcao then 
+			laurenceAnim.Run:draw(laurenceImg.Run, laurence.body:getX() + 10, laurence.body:getY() - 19, 0 , -1 , 0.7, 10, 0)
 		end	
 	--desenha o laurence parado para o lado certo
 	elseif animationAtual == laurenceAnim.Stop then
 			if left == true then
-				laurenceAnim.Stop:draw(laurenceImg.Stop, laurence.body:getX(), laurence.body:getY()-19,0 , -1 , 1 , 12 , 0)
+				laurenceAnim.Stop:draw(laurenceImg.Stop, laurence.body:getX()+8, laurence.body:getY() - 19, 0 , -1, 0.7, 10, 0)
 			elseif right == true then
-				laurenceAnim.Stop:draw(laurenceImg.Stop , laurence.body:getX() , laurence.body:getY()-19,0 , 1 , 1 , 12 , 0)
+				laurenceAnim.Stop:draw(laurenceImg.Stop , laurence.body:getX()-5, laurence.body:getY() - 19, 0 , 1 , 0.7, 10, 0)
 			else
-				laurenceAnim.Stop:draw(laurenceImg.Stop, laurence.body:getX() , laurence.body:getY()-19, 0 , 1 , 1 , 12 , 0)
+				laurenceAnim.Stop:draw(laurenceImg.Stop, laurence.body:getX()-5, laurence.body:getY() - 19, 0 , 1 , 0.7, 10, 0)
 			end
---------------------------------------------------------------------------------------------------------------------------------			
+-----desenha animação de pulo-------------------------------------------------------------------------			
 	elseif animationAtual == laurenceAnim.Jump then
 		if direcao then
-			laurenceAnim.Jump:draw(laurenceImg.Jump, laurence.body:getX(), laurence.body:getY()-19, 0 , 1 , 1 , 12 , 0)
+			laurenceAnim.Jump:draw(laurenceImg.Jump, laurence.body:getX()-5, laurence.body:getY() - 19, 0 , 1 , 0.7, 10, 0)
 		elseif not direcao then
-			laurenceAnim.Jump:draw(laurenceImg.Jump, laurence.body:getX(), laurence.body:getY()-19, 0 , -1 , 1 , 12 , 0)
+			laurenceAnim.Jump:draw(laurenceImg.Jump, laurence.body:getX()-5, laurence.body:getY() - 19, 0 , -1 , 0.7, 10, 0)
 		end
 	end
 end
-
-
-	
-
