@@ -9,9 +9,14 @@ require("modules/End")
 
 largura = love.graphics.getWidth()
 altura = love.graphics.getHeight()
-gamestate = "title"
+
+function love.keyreleased(key)
+	last_keyreleased(key)
+end
+
 
 function love.load()	
+	paused = false
 	Map_load()
 	menu_load()
 	songs_load()
@@ -46,26 +51,13 @@ function love.draw()
   if gamestate == "title" then
 		menu_draw()
   elseif gamestate == "play" then
-		camera:attach()
 		Map_draw()
-		Laurence_draw()
-		npc_draw()
-		points_draw()
-		camera:detach()
-		camera:draw()	
   elseif gamestate == "Game Over" then
 		gameover_draw()
   elseif gamestate == "Ending" then
 		Ending_draw()
   end
 end
-
-function love.keyreleased(key)
-	if gamestate == "play" then
-		last_keyreleased(key)
-	end
-end
-
 
 function love.keypressed(key)
 	if gamestate == "Game Over" and key == "return" then 
@@ -76,10 +68,6 @@ function love.keypressed(key)
 		love.audio.stop(win_theme)
 		gamestate = "play"
 		love.load()
-	end
-
-	if gamestate == "play" then
-		jump_config(key)
 	end
 end
 
