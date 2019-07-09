@@ -1,6 +1,6 @@
 local anim8 = require("libs/anim8")
 
-function npc_load(map)
+function npcLoad(map)
    ghostLayer = map:addCustomLayer("ghost", 11)
    medusaLayer = map:addCustomLayer("medusa", 12)
    --vetor dos npcs--
@@ -43,7 +43,7 @@ function npc_load(map)
    npc.mummy.vL = 1
 end
 
-function npc_update(dt)
+function npcUpdate(dt)
     npc.ghost.anim:update(dt)
     npc.ghost2.anim:update(dt)
     npc.medusa.anim:update(dt)
@@ -97,7 +97,7 @@ function npc_update(dt)
     end
 end
 
-function npc_draw()
+function npcDraw()
        -- desenhar os fantasmas no angulo e direção correta--
         if sent  then
             npc.ghost.anim:draw(npc.ghost.img, npc.ghost.posx, npc.ghost.posy, 0 , -1, 1, 12 , 0)

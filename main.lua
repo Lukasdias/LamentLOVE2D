@@ -1,71 +1,74 @@
-require("modules/laurence")
-require("modules/map_conf")
+require("modules/player")
+require("modules/mapConf")
 require("modules/menu")
-require("modules/Ost")
+require("modules/sound")
 require("modules/npc")
 require("modules/points")
-require("modules/GameOver")
-require("modules/End")
+require("modules/gameOver")
+require("modules/endGame")
 
 largura = love.graphics.getWidth()
 altura = love.graphics.getHeight()
 
 function love.keyreleased(key)
-	last_keyreleased(key)
+	lastKey(key)
 end
 
 
 function love.load()	
-	paused = false
-	Map_load()
-	menu_load()
-	songs_load()
-	npc_load(map)
-	Laurence_load(map, world)
-	points_load(map, world)
-	gameover_load()
-	Ending_load()
+	mapLoad()
+	menuLoad()
+	--soundLoad()
+	gameOverLoad()
+	endLoad()
+	npcLoad(map)
+	playerLoad(map, world)
+	pointsLoad(map, world)
 end
 
 function love.update(dt)
-	if gamestate == "title" then
-		menu_update(dt)
-		songs_update()
+	if gamestate == "menu" then
+		menuUpdate(dt)
+		--soundUpdate()
 	elseif gamestate == "play" then
-		Map_update(dt)
-		Laurence_update(dt)
-		points_update(dt)
-		npc_update(dt)
-		points_update(dt)
-		songs_update()
-	elseif gamestate == "Game Over" then
-		gameover_update(dt)
-		songs_update()
-	elseif gamestate == "Ending" then
-		Ending_update(dt)
-		songs_update()
+		mapUpdate(dt)
+		playerUpdate(dt, laurence)
+		pointsUpdate(dt)
+		npcUpdate(dt)
+		pointsUpdate(dt)
+		--soundUpdate()
+	elseif gamestate == "death" then
+		gameOverUpdate(dt)
+		--soundUpdate()
+	elseif gamestate == "end" then
+		endUpdate(dt)
+		--soundUpdate()
 	end
 end
 
 function love.draw()
-  if gamestate == "title" then
-		menu_draw()
+  if gamestate == "menu" then
+		menuDraw()
   elseif gamestate == "play" then
-		Map_draw()
-  elseif gamestate == "Game Over" then
-		gameover_draw()
-  elseif gamestate == "Ending" then
-		Ending_draw()
+		mapDraw()
+  elseif gamestate == "death" then
+		gameOverDraw()
+  elseif gamestate == "end" then
+		endDraw()
   end
 end
 
 function love.keypressed(key)
-	if gamestate == "Game Over" and key == "return" then 
-		love.audio.stop(death_theme)
+	if(gamestate == "play") then
+		playerJump(key)
+	end
+
+	if gamestate == "death" and key == "return" then 
+		--love.audio.stop(death_theme)
 		gamestate = "play"
 		love.load()
-	elseif gamestate == "Ending" and key == "return" then
-		love.audio.stop(win_theme)
+	elseif gamestate == "end" and key == "return" then
+		--love.audio.stop(win_theme)
 		gamestate = "play"
 		love.load()
 	end
@@ -73,14 +76,14 @@ end
 
 
 function love.mousemoved(x,y)
-	if gamestate == "title" then
+	if gamestate == "menu" then
 		start_button.mousemoved(x,y)
 		quit_button.mousemoved(x,y)
 	end
 end
   
 function love.mousepressed(x,y,b,it)
-	if gamestate == "title" then
+	if gamestate == "menu" then
 		start_button.mousepressed(x,y,b)
 		quit_button.mousepressed(x,y,b)
 	end

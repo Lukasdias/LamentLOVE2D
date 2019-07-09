@@ -2,8 +2,8 @@
   - É uma homenagem a:
 
   <p align="center">
-  <img src="https://ubisafe.org/images/castle-vector-castlevania-6.png"/>
-</p>
+    <img src="https://ubisafe.org/images/castle-vector-castlevania-6.png"/>
+  </p>
 
   - Jogo feito na versão 0.11.2 do LOVE2D
     - link para dowload: https://love2d.org/
@@ -12,8 +12,8 @@
       - O TILED MAP(criador de mapas)
            
            <p align="center">
-                  <img src="https://github.com/Lukasdias/LamentLOVE2D/blob/master/map/Map_1.png"/>
-                </p>
+              <img src="https://github.com/Lukasdias/LamentLOVE2D/blob/master/map/Map_1.png"/>
+            </p>
      
   *link para dowload do aplicativo: https://www.mapeditor.org/*
   - LIBS:           
@@ -39,5 +39,5 @@
 # What is a man?
   
   <p align="center">
-              <img src="https://steamusercontent-a.akamaihd.net/ugc/848217580683822174/C9C0D086C5B3715D78E90D5F37D9A1ACC6B1AD64/"/>
-            </p>
+    <img src="https://steamusercontent-a.akamaihd.net/ugc/848217580683822174/C9C0D086C5B3715D78E90D5F37D9A1ACC6B1AD64/"/>
+  </p>
