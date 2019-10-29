@@ -30,7 +30,11 @@
        - Button_Love lib para botões(feita pelo meu colega de classe Vinicius Costa), ela foi utilizada no meu menu.
           
           *link para a lib*
-           https://github.com/costvin15/buttonLove2d            
+           https://github.com/costvin15/buttonLove2d
+       - Stalker-X uma excelente lib para a criação de uma camera
+          *link para a lib*
+          https://github.com/adnzzzzZ/STALKER-X
+          
 # Conclusões
   
   - Em um breve resumo esses foram os elementos que me ajudaram a fazer este jogo
