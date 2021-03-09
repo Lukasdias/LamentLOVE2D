@@ -1,9 +1,4 @@
 # Lament of Laurence
-  - É uma homenagem a:
-
-  <p align="center">
-    <img src="https://ubisafe.org/images/castle-vector-castlevania-6.png"/>
-  </p>
 
   - Jogo feito na versão 0.11.2 do LOVE2D
     - link para dowload: https://love2d.org/
