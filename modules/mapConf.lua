@@ -29,6 +29,7 @@ function mapDraw()
 	playerDraw()
 	enemyManager:draw()
 	pointsDraw()
+	DebugOverlay.draw(playerSnapshot())
 	camera:detach()
 	--map:box2d_draw(0, 0, 2, 2.7)
 end

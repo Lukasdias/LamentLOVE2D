@@ -8,6 +8,7 @@ require("modules/gameOver")
 require("modules/endGame")
 
 local EnemyManager = require("modules.enemy_manager")
+DebugOverlay = require("modules.debug_overlay")
 enemyManager = EnemyManager.new()
 
 screenWidth = love.graphics.getWidth()
@@ -39,6 +40,7 @@ function love.update(dt)
 		pointsUpdate(dt)
 		enemyManager:update(dt)
 		pointsUpdate(dt)
+		DebugOverlay.update(playerSnapshot())
 		--soundUpdate()
 	elseif gamestate == "death" then
 		gameOverUpdate(dt)
@@ -62,6 +64,11 @@ function love.draw()
 end
 
 function love.keypressed(key)
+	if key == "f3" then
+		local on = DebugOverlay.toggle()
+		print("[debug] alignment overlay " .. (on and "ON" or "OFF"))
+	end
+
 	if gamestate == "menu" then
 		menuKeypressed(key)
 	end

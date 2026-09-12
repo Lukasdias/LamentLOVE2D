@@ -43,6 +43,13 @@ local function currentRect()
 	return machine:currentRect()
 end
 
+-- The sprite's feet are pinned to the bottom edge of the physics box, so every
+-- animation stays planted regardless of its per-frame height. The box is centered
+-- on the body origin, so its bottom sits at bodyY + boxHeight/2.
+local function spriteTop(rect)
+	return laurence.body:getY() + CFG.boxHeight / 2 - rect.h
+end
+
 function playerLoad(map, world)
 	camera = Camera.new(config.camera)
 	if map then
@@ -67,7 +74,7 @@ function playerLoad(map, world)
 	laurence.w = 22.5
 	laurence.h = 22
 	laurence.body = love.physics.newBody(world, CFG.spawnX, CFG.spawnY, "dynamic")
-	laurence.shape = love.physics.newRectangleShape(20, 24.5)
+	laurence.shape = love.physics.newRectangleShape(CFG.boxWidth, CFG.boxHeight)
 	laurence.fixture = love.physics.newFixture(laurence.body, laurence.shape, 0.8)
 	laurence.body:setFixedRotation(true)
 	laurence.body:setGravityScale(0)
@@ -175,8 +182,7 @@ function playerMove(dt)
 	local moving = math.abs(vx) > CFG.runAnimThreshold
 	if inAir or moving then
 		local rect = currentRect()
-		trail:emit(sheet, rect, body:getX(), body:getY() + CFG.spriteOffsetY, facing,
-			rect.w / 2, dt)
+		trail:emit(sheet, rect, body:getX(), spriteTop(rect), facing, rect.w / 2, dt)
 	else
 		trail:idle()
 	end
@@ -186,8 +192,8 @@ function playerDraw()
 	trail:draw()
 
 	local x = laurence.body:getX()
-	local y = laurence.body:getY() + CFG.spriteOffsetY
 	local rect = currentRect()
+	local y = spriteTop(rect)
 	love.graphics.draw(sheet.image, sheet:quad(rect), x, y, 0, facing, 1, rect.w / 2, rect.h)
 end
 
@@ -205,6 +211,7 @@ function playerSnapshot()
 		trail = trail,
 		facing = facing,
 		vy = vy,
+		body = laurence.body,
 		state = machine and machine.current,
 	}
 end
