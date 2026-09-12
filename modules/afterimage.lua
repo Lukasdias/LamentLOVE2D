@@ -20,21 +20,23 @@ function Afterimage:reset()
 	self.items = {}
 end
 
-function Afterimage:emit(anim, img, x, y, facing, originX, dt)
+function Afterimage:emit(sheet, rect, x, y, facing, originX, dt)
+	if not rect then
+		return
+	end
 	self.timer = self.timer + dt
 	if self.timer < self.interval then
 		return
 	end
 	self.timer = self.timer - self.interval
 
-	local info = { anim:getFrameInfo(x, y, 0, facing, 1, originX, 0) }
-	local _, _, _, h = info[1]:getViewport()
 	self.items[#self.items + 1] = {
-		img = img,
-		info = info,
+		sheet = sheet,
+		rect = rect,
 		x = x,
 		y = y,
-		h = h,
+		originX = originX,
+		facing = facing,
 		life = self.life,
 		max = self.life,
 	}
@@ -64,14 +66,15 @@ function Afterimage:draw()
 		local t = g.life / g.max
 		local alpha = (t ^ 1.5) * self.alpha
 		local scale = (1 - self.shrink) + self.shrink * t
-		local pivotY = g.y + g.h / 2
+		local pivotY = g.y + g.rect.h / 2
 
 		love.graphics.setColor(tint[1], tint[2], tint[3], alpha)
 		love.graphics.push()
 		love.graphics.translate(g.x, pivotY)
 		love.graphics.scale(scale, scale)
 		love.graphics.translate(-g.x, -pivotY)
-		love.graphics.draw(g.img, unpack(g.info))
+		love.graphics.draw(g.sheet.image, g.sheet:quad(g.rect), g.x, g.y, 0, g.facing, 1,
+			g.originX, g.rect.h)
 		love.graphics.pop()
 	end
 	love.graphics.setColor(1, 1, 1, 1)

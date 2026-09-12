@@ -26,7 +26,7 @@ function mapDraw()
 	camera:attach()	
 	love.graphics.draw(mapImage, 0, 0);	
 	playerDraw()
-	npcDraw()
+	enemyManager:draw()
 	pointsDraw()
 	camera:detach()
 	--map:box2d_draw(0, 0, 2, 2.7)
