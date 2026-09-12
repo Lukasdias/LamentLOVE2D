@@ -59,6 +59,10 @@ function love.draw()
 end
 
 function love.keypressed(key)
+	if gamestate == "menu" then
+		menuKeypressed(key)
+	end
+
 	if(gamestate == "play") then
 		playerJump(key)
 	end
@@ -77,15 +81,13 @@ end
 
 function love.mousemoved(x,y)
 	if gamestate == "menu" then
-		start_button.mousemoved(x,y)
-		quit_button.mousemoved(x,y)
+		menuMousemoved(x,y)
 	end
 end
   
 function love.mousepressed(x,y,b,it)
 	if gamestate == "menu" then
-		start_button.mousepressed(x,y,b)
-		quit_button.mousepressed(x,y,b)
+		menuMousepressed(x,y,b)
 	end
 end
 
