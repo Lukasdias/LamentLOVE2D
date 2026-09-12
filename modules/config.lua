@@ -8,7 +8,7 @@ return {
 		msaa = 0,
 		resizable = false,
 		highdpi = true,
-		icon = "imagens/Menu/gameTitle.png",
+		icon = "images/Menu/gameTitle.png",
 	},
 
 	camera = {
@@ -20,7 +20,7 @@ return {
 
 	menu = {
 		background = {
-			path = "imagens/Menu/MenuBG.png",
+			path = "images/Menu/MenuBG.png",
 			frameW = 768,
 			frameH = 384,
 			cols = 9,
@@ -28,7 +28,7 @@ return {
 			fps = 0.08,
 		},
 		title = {
-			path = "imagens/Menu/Main_Title.png",
+			path = "images/Menu/Main_Title.png",
 			frameW = 756,
 			frameH = 108,
 			count = 20,
@@ -37,7 +37,7 @@ return {
 			scale = 0.72,
 		},
 		credits = {
-			path = "imagens/Menu/credits.png",
+			path = "images/Menu/credits.png",
 			y = 552,
 			scale = 1,
 			alpha = 0.75,

@@ -22,8 +22,8 @@ return function()
 	return {
 		{
 			name = "ghost",
-			image = "imagens/Npcs/ghost_blue.png",
-			frames = gridFrames("imagens/Npcs/ghost_blue.png", 37, 65, { "1-4", 1 }),
+			image = "images/Npcs/ghost_blue.png",
+			frames = gridFrames("images/Npcs/ghost_blue.png", 37, 65, { "1-4", 1 }),
 			fps = 0.09,
 			x = 10, y = 25,
 			minX = 10, maxX = 300,
@@ -32,8 +32,8 @@ return function()
 		},
 		{
 			name = "ghost2",
-			image = "imagens/Npcs/ghost.png",
-			frames = gridFrames("imagens/Npcs/ghost.png", 37, 65, { "1-4", 1 }),
+			image = "images/Npcs/ghost.png",
+			frames = gridFrames("images/Npcs/ghost.png", 37, 65, { "1-4", 1 }),
 			fps = 0.09,
 			x = 300, y = 25,
 			minX = 300, maxX = 600,
@@ -42,8 +42,8 @@ return function()
 		},
 		{
 			name = "medusa",
-			image = "imagens/Npcs/Medusa.png",
-			frames = gridFrames("imagens/Npcs/Medusa.png", 57, 88, { "1-8", 1 }),
+			image = "images/Npcs/Medusa.png",
+			frames = gridFrames("images/Npcs/Medusa.png", 57, 88, { "1-8", 1 }),
 			fps = 0.09,
 			x = 205, y = 400,
 			minX = 200, maxX = 450,
@@ -52,8 +52,8 @@ return function()
 		},
 		{
 			name = "mummy",
-			image = "imagens/Npcs/mummy.png",
-			frames = gridFrames("imagens/Npcs/mummy.png", 37, 45,
+			image = "images/Npcs/mummy.png",
+			frames = gridFrames("images/Npcs/mummy.png", 37, 45,
 				{ "1-5", 1, "1-5", 2, "1-5", 3, "1-3", 4 }),
 			fps = 0.08,
 			x = 120, y = 516,

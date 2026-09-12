@@ -10,8 +10,8 @@ require("modules/endGame")
 local EnemyManager = require("modules.enemy_manager")
 enemyManager = EnemyManager.new()
 
-largura = love.graphics.getWidth()
-altura = love.graphics.getHeight()
+screenWidth = love.graphics.getWidth()
+screenHeight = love.graphics.getHeight()
 
 function love.keyreleased(key)
 	lastKey(key)

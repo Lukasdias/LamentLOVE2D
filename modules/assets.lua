@@ -3,8 +3,8 @@ local Assets = {}
 -- Cross-OS asset resolution.
 --
 -- This project was authored on Windows, where the filesystem is case-insensitive.
--- LÖVE on Linux/macOS is case-sensitive, so "imagens/menu/menuBG.png" fails when
--- the file on disk is "imagens/Menu/MenuBG.png". Backslashes from Windows paths
+-- LÖVE on Linux/macOS is case-sensitive, so "images/menu/menuBG.png" fails when
+-- the file on disk is "images/Menu/MenuBG.png". Backslashes from Windows paths
 -- and a leading "./" also vary by authoring machine.
 --
 -- Assets.path normalizes the separator and resolves to the real on-disk casing

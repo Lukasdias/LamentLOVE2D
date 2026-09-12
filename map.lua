@@ -270,7 +270,7 @@ return {
       tileheight = 65,
       spacing = 0,
       margin = 0,
-      image = "imagens/Npcs/ghost_blue.png",
+      image = "images/Npcs/ghost_blue.png",
       imagewidth = 148,
       imageheight = 65,
       tileoffset = {
@@ -317,7 +317,7 @@ return {
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "imagens/Npcs/eyeball.png",
+      image = "images/Npcs/eyeball.png",
       imagewidth = 256,
       imageheight = 96,
       tileoffset = {
@@ -633,7 +633,7 @@ return {
       tileheight = 64,
       spacing = 0,
       margin = 0,
-      image = "imagens/Npcs/escape.png",
+      image = "images/Npcs/escape.png",
       imagewidth = 320,
       imageheight = 256,
       tileoffset = {
